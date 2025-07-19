@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class WeatherMapScreen extends StatefulWidget {
   const WeatherMapScreen({Key? key}) : super(key: key);
@@ -12,8 +13,7 @@ class WeatherMapScreen extends StatefulWidget {
 class _WeatherMapScreenState extends State<WeatherMapScreen> {
   static const LatLng _initialPosition = LatLng(20.5937, 78.9629); // Center of India as default
 
-  // TODO: Replace with your actual OpenWeatherMap API key
-  static const String _owmApiKey = '87cff8c6d4cf00c5da369db2314de3cc';
+  String get _owmApiKey => dotenv.env['OPENWEATHER_API_KEY'] ?? '';
 
   // List of weather overlay layers
   final List<Map<String, String>> _weatherLayers = [
